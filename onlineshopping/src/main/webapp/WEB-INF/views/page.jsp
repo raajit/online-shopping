@@ -4,9 +4,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <spring:url var="css" value="/resources/css" />
-<spring:url var="css1" value="/resources/vendor/bootstrap/css" />
-<spring:url var="js" value="/resources/vendor/jquery" />
-<spring:url var="js1" value="/resources/vendor/bootstrap/js" />
+<spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
 
 
@@ -27,13 +25,21 @@
     
     <script>
         window.menu = '${title}';
+        
+        window.contextRoot = '${contextRoot}'
     </script>
 
     <!-- Bootstrap core CSS -->
-    <link href="${css1}/bootstrap.min.css" rel="stylesheet">
+    <link href="${css}/bootstrap.min.css" rel="stylesheet">
     
     <!-- Bootstrap Readable Theme -->
-    <link href="${css1}/bootstrap-readable-theme.css" rel="stylesheet">
+    <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+    
+    
+    <!-- dataTable Bootstrap CSS -->
+    <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
+    
+    
 
     <!-- Custom styles for this template -->
     <link href="${css}/myapp.css" rel="stylesheet">
@@ -75,6 +81,12 @@
 				<%@ include file="listProducts.jsp"%>
 			</c:if>
 			
+			
+			<!-- Load only when user clicks show product -->
+			<c:if test="${userClickShowProduct == true}">
+				<%@ include file="singleProduct.jsp"%>
+			</c:if>
+			
 			 
 
 		</div>
@@ -83,10 +95,22 @@
 		<!-- Footer -->
 		<%@ include file="./shared/footer.jsp"%>
 
+        	<!-- jQuery -->
+		<script src="${js}/jquery.js"></script>
+
+		<script src="${js}/jquery.validate.js"></script>
 
 		<!-- Bootstrap core JavaScript -->
-		<script src="${js}/jquery.min.js"></script>
-		<script src="${js1}/bootstrap.bundle.min.js"></script>
+			<script src="${js}/bootstrap.min.js"></script>
+
+    	<!-- Datatable Plugin Js -->
+         <script src="${js}/jquery.dataTables.js"></script>
+         
+         
+         <!-- Datatable BootStrap Script -->
+         <script src="${js}/dataTables.bootstrap.js"></script>
+         
+        
 
 		<!-- Self Made Javascript -->
 		<script src="${js}/myapp.js"></script>
